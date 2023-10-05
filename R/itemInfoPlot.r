@@ -45,7 +45,8 @@ itemInfoPlot <- function(model,
     test <- test[items]
   }
   
-  names(test) <- paste('item', 1:length(test))
+  # names(test) <- paste('item', 1:length(test))
+  names(test) <- names(data)
   test <- as.data.frame(test, theta) %>%
     tibble::rownames_to_column("theta") %>%
     gather(key, value, -theta) %>%
