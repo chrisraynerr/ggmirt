@@ -43,7 +43,7 @@ tracePlot <- function(model,
   type <- model@Model$itemtype
   
   # Graded response model
-  if(type[1] == "graded") {
+  if(type[1] == "graded" | type[1] == "nominal" ) {
     
     trace <- probtrace(fitGraded, Theta = theta_range) %>%
       as_tibble %>%
@@ -73,7 +73,8 @@ tracePlot <- function(model,
     trace <- trace[items]
   }
   
-  names(trace) <- paste('item', 1:length(trace))
+  # names(trace) <- paste('item', 1:length(trace))
+  names(trace) <- names(data)
   trace_df <- do.call(rbind, trace)
   
   item <- rep(names(trace), each = length(theta))
